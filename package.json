@@ -1,0 +1,31 @@
+{
+  "name": "generator-sx-ui",
+  "version": "1.0.1",
+  "description": "随行付前端脚手架",
+  "main": "index.js",
+  "files": [
+    "app",
+    "router"
+  ],
+  "scripts": {
+    "test": "sxm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sxfed/generator-sx-ui.git"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "generator-sx-ui"
+  ],
+  "author": "Jerry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sxfed/generator-sx-ui/issues"
+  },
+  "homepage": "https://github.com/sxfed/generator-sx-ui#readme",
+  "dependencies": {
+    "yeoman-generator": "^1.1.1",
+    "yosay": "^2.0.0"
+  }
+}
