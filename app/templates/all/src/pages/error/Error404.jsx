@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button} from 'antd';
 import {Link} from 'react-router';
 import {addClass, removeClass} from 'sx-ui/utils';
-import error404 from './404.png';
+
 import './style.less';
 /**
  * 页面未找到分为两种情况：
@@ -47,7 +47,7 @@ export class LayoutComponent extends Component {
         }
         return (
             <div className="error-page">
-                <img src={error404} alt="404图片"/>
+                <img alt="404图片"/>
                 <p className="error-text">您访问的页面不存在...</p>
                 <Button
                     type="primary"
