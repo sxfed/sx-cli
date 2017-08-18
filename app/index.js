@@ -4,14 +4,13 @@ var util = require('util');
 var Generator = require('yeoman-generator');
 var yosay = require('yosay');    //yeoman弹出框
 var path = require('path');
-default class extends Generator {
+module.exports =  class extends Generator {
     constructor(args, opts) {
         // Calling the super constructor is important so our generator is correctly set up
         super(args, opts);
 
         // Next, add your custom code
         this.option('framework', {type: String, required: true});
-        this.option('modules', {type: String, required: false});
         this.option('babel'); // This method adds support for a `--babel` flag
     }
 
@@ -23,56 +22,65 @@ default class extends Generator {
                 name: 'framework',
                 message: 'Which JavaScript framework do you want?',
                 choices: [
-                    {name: 'React', value: 'react'},
-                    {name: 'Angular 2', value: 'vue'},
+                    {name: 'sx-ui', value: 'sx-ui'},
+                    {name: 'sx-webpack', value: 'sx-webpack'},
                 ]
             },
             {
                 when(responses) {
-                    if (responses.framework === 'vue') {
-                        responses.modules = 'vue';
+                    if (responses.framework === 'sx-ui') {
                         return false;
                     }
-                    return !responses.modules && !modules;
+                    return !responses.framework && !framework;
                 },
             },
             {
                 when(responses) {
-                    if (responses.framework === 'react') {
-                        responses.modules = 'react';
+                    if (responses.framework === 'sx-webpack') {
                         return false;
                     }
-                    return !responses.modules && !modules;
+                    return !responses.framework && !framework;
                 },
             },
             {
-            type    : 'input',
-            name    : 'name',
-            message : '您的项目名称',
+                type    : 'input',
+                name    : 'name',
+                message : '您的项目名称',
             }
-        // , {
-        //     type    : 'confirm',
-        //     name    : 'cool',
-        //     message : 'Would you like to enable the Cool feature?'
-        // }
-        ,{
-            type    : 'input',
-            name    : 'author',
-            message : '项目开发者名称',
-        }
+            // , {
+            //     type    : 'confirm',
+            //     name    : 'cool',
+            //     message : 'Would you like to enable the Cool feature?'
+            // }
+            ,{
+                type    : 'input',
+                name    : 'author',
+                message : '项目开发者名称',
+            }
         ]).then((answers) => {
             this.appname = answers.name;
             this.author = answers.author;
             this.framework = answers.framework;
-            this.modules = answers.modules;
         });
 
     }
 
     writing() {
         this.fs.copy(
-            this.templatePath(this.framework),
+            this.templatePath(`${this.framework}/staticfile`),
             this.destinationPath(`${this.appname}`)
+        );
+        this.fs.copy(
+            this.templatePath(`${this.framework}/staticfile/.*`),
+            this.destinationPath(`${this.appname}/`)
+        );
+        this.fs.copyTpl(
+            this.templatePath(`${this.framework}/package.json`),
+            this.destinationPath(`${this.appname}/package.json`),
+            {
+                name: this.appname,
+                author: this.author
+            }
         );
         this.sourceRoot(`./${this.appname}`);
     }
