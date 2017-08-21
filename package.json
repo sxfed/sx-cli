@@ -1,6 +1,6 @@
 {
   "name": "generator-sx-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "随行付前端脚手架",
   "main": "index.js",
   "files": [
@@ -8,7 +8,8 @@
     "router"
   ],
   "scripts": {
-    "test": "sxm"
+    "test": "sxm",
+    "postinstall": "sudo node ./app/shell.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/sxfed/sx-cli#readme",
   "dependencies": {
+    "shelljs": "^0.7.8",
     "yeoman-generator": "^1.1.1",
     "yosay": "^2.0.0"
   }

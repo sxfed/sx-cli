@@ -4,6 +4,7 @@ var util = require('util');
 var Generator = require('yeoman-generator');
 var yosay = require('yosay');    //yeoman弹出框
 var path = require('path');
+
 module.exports =  class extends Generator {
     constructor(args, opts) {
         // Calling the super constructor is important so our generator is correctly set up
@@ -22,21 +23,21 @@ module.exports =  class extends Generator {
                 name: 'framework',
                 message: 'Which JavaScript framework do you want?',
                 choices: [
-                    {name: 'sx-ui', value: 'sx-ui'},
+                    {name: '后台管理系统', value: 'sx-admin'},
                     {name: 'sx-webpack', value: 'sx-webpack'},
+                    {name: 'sx-rn', value: 'sx-rn'},
+                    {name: 'sx-mobile', value: 'sx-mobile'},
+                    {name: 'sx-android', value: 'sx-android'},
                 ]
             },
             {
                 when(responses) {
-                    if (responses.framework === 'sx-ui') {
-                        return false;
-                    }
-                    return !responses.framework && !framework;
-                },
-            },
-            {
-                when(responses) {
-                    if (responses.framework === 'sx-webpack') {
+                    if (responses.framework === 'sx-rn'
+                        ||responses.framework === 'sx-webpack'
+                        || responses.framework === 'sx-admin'
+                        || responses.framework === 'sx-mobile'
+                        || responses.framework === 'sx-android'
+                    ) {
                         return false;
                     }
                     return !responses.framework && !framework;
@@ -66,22 +67,10 @@ module.exports =  class extends Generator {
     }
 
     writing() {
-        this.fs.copy(
-            this.templatePath(`${this.framework}/staticfile`),
-            this.destinationPath(`${this.appname}`)
-        );
-        this.fs.copy(
-            this.templatePath(`${this.framework}/staticfile/.*`),
-            this.destinationPath(`${this.appname}/`)
-        );
-        this.fs.copyTpl(
-            this.templatePath(`${this.framework}/package.json`),
-            this.destinationPath(`${this.appname}/package.json`),
-            {
-                name: this.appname,
-                author: this.author
-            }
-        );
-        this.sourceRoot(`./${this.appname}`);
+        this.spawnCommandSync('git',['clone','-b','master',`https://github.com/sxfed/${this.framework}.git`,this.appname])
+        this.spawnCommandSync('cd',[this.appname]);
+        this.spawnCommandSync('yarn');
+
+        this.spawnCommandSync('yarn',['run','dev'])
     }
 };
