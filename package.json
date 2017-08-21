@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "sxm",
-    "postinstall": "sudo node ./app/shell.js"
+    "postinstall": "sudo node ./app/shell.js && sudo source ~/.bashrc"
   },
   "repository": {
     "type": "git",
