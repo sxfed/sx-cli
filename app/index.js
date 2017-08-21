@@ -59,8 +59,8 @@ module.exports =  class extends Generator {
                 message : '项目开发者名称',
             }
         ]).then((answers) => {
-            this.appname = answers.name;
-            this.author = answers.author;
+            this.appname = answers.name ? answers.name :`${answers.framework}-project`;
+            this.author = answers.author ? answers.author: 'jerry uncle';
             this.framework = answers.framework;
         });
 
