@@ -1,7 +1,7 @@
 ## 随行付前端脚手架
 
 #### 基本环境
-[git] (https://git-scm.com/downloads)版本管理工具
+[git](https://git-scm.com/downloads) 版本管理工具
 
 [yarn](https://yarnpkg.com/zh-Hans/docs/install)包管理工具
 
