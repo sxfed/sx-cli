@@ -1,9 +1,12 @@
 ## 随行付前端脚手架
 
 #### 基本环境
-版本管理工具[git](https://git-scm.com/downloads)
-包管理工具[yarn](https://yarnpkg.com/zh-Hans/docs/install)
-Node环境[node](http://nodejs.cn/download/)
+[git](https://git-scm.com/downloads)版本管理工具
+
+[yarn](https://yarnpkg.com/zh-Hans/docs/install)包管理工具
+
+[node](http://nodejs.cn/download/)Node环境
+
 
 MacOs
 
