@@ -10,9 +10,9 @@
 
 MacOs
 
-终端下安装
+终端下安装 [Howbrew](https://brew.sh/)
 ```
-安装 OSX 包管理工具 [Howbrew](https://brew.sh/)
+安装 OSX 包管理工具Howbrew
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 使用howbrew 安装 git,nodejs,yarn
 $ brew install git
